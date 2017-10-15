@@ -1,0 +1,9 @@
+## Interface: 11200
+## Title: PoisonPouch
+## Notes: Apply buffs to your weapons with 2 clicks.
+## Author: lithander - lithander@gmx.de
+## Version: 1.2.0
+## Dependencies:
+## OptionalDeps:
+## SavedVariablesPerCharacter: POISONPOUCH_SAVED
+PoisonPouch.xml

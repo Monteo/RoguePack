@@ -1,0 +1,8 @@
+## Interface: 11200
+## Title: |cffffaa22Style|r|cffeedd00Points|r
+## Version: 1.0
+## Author: Tigz (Kronos1)
+## Notes: Style your combo points! for a better readme see StylePoints.lua
+## X-Website: https://forum.twinstar.cz/showthread.php/116728-Addons?highlight=StylePoints 
+## SavedVariables: StylePoints_Config
+StylePoints.xml

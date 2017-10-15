@@ -1,0 +1,242 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="PoisonPouch.lua"/>
+	<Script file="PoisonPouchCommandLine.lua"/>
+	
+	<CheckButton name="PoisonPouchDropdownButtonTemplate" inherits="ActionButtonTemplate" virtual="true">
+		<Scripts>
+			<OnLoad>
+				this:RegisterForClicks("LeftButtonUp","RightButtonUp")
+			</OnLoad>
+			<OnClick>
+				PoisonPouch_PoisonOnClick(arg1)
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_BOTTOMLEFT", -3, -3);
+				GameTooltip:SetText(this.tooltip);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+	
+	<Button name="PoisonPouchResizeHTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="38" y="11"/>
+		</Size>
+		<NormalTexture file="Interface\AddOns\PoisonPouch\Img\Handle">
+			<TexCoords left="0" right=".5937" top="0" bottom=".1719"/>
+		</NormalTexture>
+		<HighlightTexture file="Interface\AddOns\PoisonPouch\Img\Handle">
+			<TexCoords left="0" right=".5937" top=".2031" bottom=".375"/>
+		</HighlightTexture>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel()+2)
+				this.tooltip = POISONPOUCH_RESIZEBUTTON_TIP1;
+			</OnLoad>
+			<OnEnter>
+                GameTooltip:SetOwner(this, "ANCHOR_BOTTOMLEFT", -3, -3);
+				GameTooltip:SetText(this.tooltip);
+            </OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnMouseDown>
+				this:LockHighlight()
+				PoisonPouch_SelectionScaleFrame:Show()
+				PoisonPouch_IsScaling = true;
+				PoisonPouchDebug("startscale")           
+            </OnMouseDown>
+			<OnMouseUp>
+				PoisonPouch_SelectionScaleFrame:Hide()
+				this:UnlockHighlight()
+				PoisonPouch_IsScaling = false;
+				PoisonPouchDebug("stopscale")            
+            </OnMouseUp>
+		</Scripts>
+	</Button>
+	
+	<Button name="PoisonPouchResizeVTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="11" y="38"/>
+		</Size>
+		<NormalTexture file="Interface\AddOns\PoisonPouch\Img\Handle">
+			<TexCoords left="0" right=".1719" top=".3906" bottom="1"/>
+		</NormalTexture>
+		<HighlightTexture file="Interface\AddOns\PoisonPouch\Img\Handle">
+			<TexCoords left=".2031" right=".375" top=".3906" bottom="1"/>
+		</HighlightTexture>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel()+2)
+				this.tooltip = POISONPOUCH_RESIZEBUTTON_TIP1;
+			</OnLoad>
+			<OnEnter>
+                GameTooltip:SetOwner(this, "ANCHOR_BOTTOMLEFT", -3, -3);
+				GameTooltip:SetText(this.tooltip);
+            </OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnMouseDown>
+				this:LockHighlight()
+				PoisonPouch_SelectionScaleFrame:Show()
+				PoisonPouch_IsScaling = true;
+				PoisonPouchDebug("startscale")           
+            </OnMouseDown>
+			<OnMouseUp>
+				PoisonPouch_SelectionScaleFrame:Hide()
+				this:UnlockHighlight()
+				PoisonPouch_IsScaling = false;
+				PoisonPouchDebug("stopscale")            
+            </OnMouseUp>
+		</Scripts>
+	</Button>
+	
+	
+	<!-- ItemCount text template -->
+	<Frame name="PoisonPouchLabelTemplate" enableMouse="false" virtual="true">
+		<Size>
+			<AbsDimension x="36" y="12"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT">
+				<Offset>
+					<AbsDimension x="0" y="4"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentLabel" inherits="NumberFontNormal" justifyH="RIGHT"/>
+			</Layer>
+		</Layers>
+	</Frame>
+	
+	
+    <Button name="PoisonPouchPoisonButton" parent="Minimap" toplevel="true" hidden="false" frameStrata="LOW" enableMouse="true" movable="true" id="16">
+        <NormalTexture file="Interface\AddOns\PoisonPouch\Img\PoisonPouch"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+        <Size>
+            <AbsDimension x="32" y="32"/>
+        </Size>
+        <Scripts>		
+            <OnLoad>
+        		PoisonPouch_Button_OnLoad(this);
+				this.tooltip = POISONPOUCH_POISONBUTTON_TIP1;
+			</OnLoad>
+            <OnEnter>
+                GameTooltip:SetOwner(this, "ANCHOR_BOTTOMLEFT");
+				GameTooltip:SetText(this.tooltip);
+            </OnEnter>           
+            <OnLeave>
+                GameTooltip:Hide();
+            </OnLeave>
+			<OnClick>
+				PoisonPouchDebug("Clicked poison button");
+				PoisonPouch_OnPoisonButtonClick(arg1);
+			</OnClick>
+            <OnUpdate>
+                PoisonPouch_OnUpdate(arg1);
+            </OnUpdate>			
+            <OnDragStart>
+				this:LockHighlight()
+				PoisonPouch_PoisonDraggingFrame:Show()            
+            </OnDragStart>
+            <OnDragStop>
+				PoisonPouch_PoisonDraggingFrame:Hide()
+				this:UnlockHighlight()            
+            </OnDragStop>
+        </Scripts>
+    </Button>
+	
+	<Frame name="PoisonPouchTextFrames" toplevel="true" enableMouse="false" movable="false" parent="UIParent" hidden="false">
+    	<Size>
+       		<AbsDimension x="30" y="30"/>
+     	</Size>
+     	<Anchors>
+       		<Anchor point="CENTER">
+        		<Offset>
+           			<AbsDimension x="0" y="0"/>
+         		</Offset>
+       		</Anchor>
+     	</Anchors>
+	    <Layers>
+	       <Layer level="ARTWORK">
+	            <FontString name="PoisonPouchPoisonText" inherits="GameFontHighlightSmall" text="" hidden="true">
+	                <Anchors>
+	                    <Anchor point="CENTER" relativeTo="PoisonPouchPoisonButton" relativePoint="CENTER">
+	                        <Offset>
+	                            <AbsDimension x="0" y="2"/>
+	                        </Offset>
+	                    </Anchor>
+	                </Anchors>
+					<Color r="0.0" g="1.0" b="0.0"/>
+	            </FontString>								
+			</Layer>										
+    	</Layers>
+    </Frame>
+	
+	<!--  *** PoisonSelection Frame *** -->
+	<Frame name="PoisonPouchSelection" frameStrata="DIALOG" hidden="false" parent="UIParent">
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="4" right="4" top="4" bottom="4" />
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="16" />
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="16" />
+			</EdgeSize>
+		</Backdrop>     
+		
+		<Scripts>
+			<OnLoad>
+ 				this:SetBackdropBorderColor(1, 0.8, 0);
+				this:SetBackdropColor(0.09, 0.09, 0.09);
+			</OnLoad>
+		</Scripts>
+		
+		<Frames>
+			<Button name="PoisonPouchResizeButtonH" inherits="PoisonPouchResizeHTemplate"/>
+			<Button name="PoisonPouchResizeButtonV" inherits="PoisonPouchResizeVTemplate"/>
+		</Frames>
+	</Frame>
+	
+	<!--  *** ScriptFrame Frame *** -->
+    <Frame name="PoisonPouchScriptFrame" parent="UIParent" hidden="false" justifyH="LEFT">
+        <Scripts>
+            <OnEvent>
+                PoisonPouch_OnEvent(event);
+            </OnEvent>
+            <OnLoad>
+                PoisonPouch_OnLoad();
+                PoisonPouchScriptFrame:Show();
+            </OnLoad>		
+        </Scripts>
+    </Frame>
+    
+    
+    <!--  Dragging Frame -->
+	<Frame name="PoisonPouch_PoisonDraggingFrame" parent="Minimap" hidden="true">
+		<Scripts>
+			<OnUpdate>
+				PoisonPouch_PoisonDraggingFrame_OnUpdate(arg1)
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+	
+	<!--  Scale Frame -->
+	<Frame name="PoisonPouch_SelectionScaleFrame" parent="Minimap" hidden="true">
+		<Scripts>
+			<OnUpdate>
+				PoisonPouch_SelectionScaleFrame_OnUpdate(arg1)
+			</OnUpdate>
+		</Scripts>
+	</Frame>  
+		
+</Ui>

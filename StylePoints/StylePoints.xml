@@ -1,0 +1,13 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<Script file="StylePoints.lua"/>
+	<Frame name="StylePointsFrame" frameStrata="LOW" toplevel="true" enableMouse="true" movable="true" parent="UIParent">
+		<Scripts>
+			<OnLoad>
+				StylePoints_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				StylePoints_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>
