@@ -57,7 +57,7 @@ BuyPoisonsItemInfo[20]["Vial_Type"]=BUYPOISONS_VIAL_EMPTY;
 
 
 --CP2
-BuyPoisonsItemInfo[7]["texture"] = "Interface\\Icons\\INV_Potion_19";
+BuyPoisonsItemInfo[7]["texture"] = "Interface\\Icons\\Ability_PoisonSting";
 BuyPoisonsItemInfo[7]["Components"][1]["Item"]= BUYPOISONS_COMPONENT_ESSENCE_OF_AGONY;
 BuyPoisonsItemInfo[7]["Components"][1]["Quantity"]= 3;
 BuyPoisonsItemInfo[7]["Vial_Type"]=BUYPOISONS_VIAL_CRYSTAL;
@@ -68,28 +68,28 @@ BuyPoisonsItemInfo[19]["Components"][1]["Quantity"]= 1;
 BuyPoisonsItemInfo[19]["Vial_Type"]=BUYPOISONS_VIAL_EMPTY;
 
 --WP4
-BuyPoisonsItemInfo[3]["texture"] = "Interface\\Icons\\Spell_Nature_NullifyDisease";
+BuyPoisonsItemInfo[3]["texture"] = "Interface\\Icons\\INV_Misc_Herb_16";
 BuyPoisonsItemInfo[3]["Components"][1]["Item"]= BUYPOISONS_COMPONENT_ESSENCE_OF_AGONY;
 BuyPoisonsItemInfo[3]["Components"][1]["Quantity"]= 2;
 BuyPoisonsItemInfo[3]["Components"][2]["Item"]= BUYPOISONS_COMPONENT_DEATHWEED;
 BuyPoisonsItemInfo[3]["Components"][2]["Quantity"]= 2;
 BuyPoisonsItemInfo[3]["Vial_Type"]=BUYPOISONS_VIAL_CRYSTAL;
 --WP3
-BuyPoisonsItemInfo[8]["texture"] = "Interface\\Icons\\Ability_PoisonSting";
+BuyPoisonsItemInfo[8]["texture"] = "Interface\\Icons\\INV_Misc_Herb_16";
 BuyPoisonsItemInfo[8]["Components"][1]["Item"]= BUYPOISONS_COMPONENT_ESSENCE_OF_AGONY;
 BuyPoisonsItemInfo[8]["Components"][1]["Quantity"]= 1;
 BuyPoisonsItemInfo[8]["Components"][2]["Item"]= BUYPOISONS_COMPONENT_DEATHWEED;
 BuyPoisonsItemInfo[8]["Components"][2]["Quantity"]= 2;
 BuyPoisonsItemInfo[8]["Vial_Type"]=BUYPOISONS_VIAL_CRYSTAL;
 --WP2
-BuyPoisonsItemInfo[11]["texture"] = "Interface\\Icons\\Ability_PoisonSting";
+BuyPoisonsItemInfo[11]["texture"] = "Interface\\Icons\\INV_Misc_Herb_16";
 BuyPoisonsItemInfo[11]["Components"][1]["Item"]= BUYPOISONS_COMPONENT_ESSENCE_OF_PAIN;
 BuyPoisonsItemInfo[11]["Components"][1]["Quantity"]= 1;
 BuyPoisonsItemInfo[11]["Components"][2]["Item"]= BUYPOISONS_COMPONENT_DEATHWEED;
 BuyPoisonsItemInfo[11]["Components"][2]["Quantity"]= 2;
 BuyPoisonsItemInfo[11]["Vial_Type"]=BUYPOISONS_VIAL_LEADED;
 --WP
-BuyPoisonsItemInfo[15]["texture"] = "Interface\\Icons\\Ability_PoisonSting";
+BuyPoisonsItemInfo[15]["texture"] = "Interface\\Icons\\INV_Misc_Herb_16";
 BuyPoisonsItemInfo[15]["Components"][1]["Item"]= BUYPOISONS_COMPONENT_ESSENCE_OF_PAIN;
 BuyPoisonsItemInfo[15]["Components"][1]["Quantity"]= 1;
 BuyPoisonsItemInfo[15]["Components"][2]["Item"]= BUYPOISONS_COMPONENT_DEATHWEED;

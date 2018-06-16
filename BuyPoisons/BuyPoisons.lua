@@ -1,10 +1,8 @@
  --Version
 BUYPOISONS_VERSION							= "4.4";
 
-ThePlayer = UnitName("player");
-TheServer = GetCVar("realmName");
-BuyPoisons_Is_UI_Open = 0;
-loaded = 0;
+local ThePlayer = UnitName("player");
+local TheServer = GetCVar("realmName");
 
 function bp_print(msg)
     DEFAULT_CHAT_FRAME:AddMessage(msg,1,1,1);
@@ -35,7 +33,7 @@ end
 function BuyPoisons_OnEvent(event)
 	BuyPoisons_Verify_Saved_Data();
 	if ((event=="MERCHANT_SHOW") and (UnitClass("player")==BUYPOISONS_CLASS)) then
-		is_a_poison_vendor = Index_merchant(BUYPOISONS_COMPONENT_FLASH_POWDER);
+		local is_a_poison_vendor = Index_merchant(BUYPOISONS_COMPONENT_FLASH_POWDER);
 		if (is_a_poison_vendor) then	
 			if ( BuyPoisonsData[TheServer][ThePlayer]["Restock"]["FlashPowder"] > 0 ) then
 				BuyPoisons_RestockItem(BUYPOISONS_COMPONENT_FLASH_POWDER, BuyPoisonsData[TheServer][ThePlayer]["Restock"]["FlashPowder"] );
@@ -136,7 +134,7 @@ function BuyPoisons_BuyQuantity(i , BuyPoisons_Purchase_Quantity)
 	for j=1, 2,1 do	
 		if (BuyPoisonsItemInfo[i]["Components"][j]["Quantity"]) then 
 			
-			BuyPoisons_NumberToBuy = BuyPoisonsItemInfo[i]["Components"][j]["Quantity"] * BuyPoisons_Purchase_Quantity;
+			local BuyPoisons_NumberToBuy = BuyPoisonsItemInfo[i]["Components"][j]["Quantity"] * BuyPoisons_Purchase_Quantity;
 			for k = 1, 10, 1 do
 				if (BuyPoisons_NumberToBuy > 0) then
 					if (BuyPoisons_NumberToBuy > 20) then
@@ -151,10 +149,10 @@ function BuyPoisons_BuyQuantity(i , BuyPoisons_Purchase_Quantity)
 			
 		end
 	end
-	BuyPoisons_VialsOnHand = 0;
+	local BuyPoisons_VialsOnHand = 0;
 	--BuyPoisons_VialsOnHand = BuyPoisons_CountMy(BuyPoisonsItemInfo[i]["Vial_Type"])
 	
-	BuyPoisons_VialCount = ((BuyPoisons_Purchase_Quantity- BuyPoisons_VialsOnHand)/5);
+	local BuyPoisons_VialCount = ((BuyPoisons_Purchase_Quantity- BuyPoisons_VialsOnHand)/5);
 	if (BuyPoisons_VialCount > 0) then
 		Buy_Item(BuyPoisonsItemInfo[i]["Vial_Type"],BuyPoisons_VialCount);
 	end
@@ -162,7 +160,7 @@ function BuyPoisons_BuyQuantity(i , BuyPoisons_Purchase_Quantity)
 end
 
 function Buy_Item(poison, quantity)
-	item_index = Index_merchant(poison);
+	local item_index = Index_merchant(poison);
 	if (item_index) then
 		BuyMerchantItem(item_index, quantity);
 	end
@@ -171,7 +169,8 @@ end
 function Index_merchant(item_name)
 --GetMerchantNumItems()
 --name, texture, price, quantity, numAvailable, isUsable = GetMerchantItemInfo(index);
-	item_index=nil;
+	local item_index=nil;
+	local name, texture, price, quantity, numAvailable, isUsable
 	for i = 1, GetMerchantNumItems() do
 		name, texture, price, quantity, numAvailable, isUsable = GetMerchantItemInfo(i);
 		if (name==item_name) then
@@ -185,7 +184,7 @@ function Index_merchant(item_name)
 end
 
 function BuyPoisons_RestockItem(item, BuyPoisons_RestockQuantity)
-	item_index = Index_merchant(item);	
+	local item_index = Index_merchant(item);	
 	if (item_index) then
 		DEFAULT_CHAT_FRAME:AddMessage("Vendor Sells:"..item.."["..item_index.."]",1,1,1);
 		local BuyPoisons_ItemsOnHand = BuyPoisons_CountMy(item);
@@ -247,6 +246,7 @@ end
 
 function BuyPoisons_GetPrice(i, BuyPoisons_PurchaseQuantity)
 	-- bp_print(" "..i.." "..BuyPoisonsItemInfo[i]["Components"][1]["Item"])
+	local name, texture, price, quantity, numAvailable, isUsable, BuyPoisons_Item_price
 	name, texture, price, quantity, numAvailable, isUsable = GetMerchantItemInfo(Index_merchant(BuyPoisonsItemInfo[i]["Components"][1]["Item"]));
 	BuyPoisons_Item_price = price * (BuyPoisonsItemInfo[i]["Components"][1]["Quantity"]) * BuyPoisons_PurchaseQuantity;
 	if (BuyPoisonsItemInfo[i]["Components"][2]["Item"]) then
@@ -263,7 +263,7 @@ end
 
 function BuyPoisons_Test()
 	
-	name, texture, price, quantity, numAvailable, isUsable = GetMerchantItemInfo( 1 );
+	local name, texture, price, quantity, numAvailable, isUsable = GetMerchantItemInfo( 1 );
 
 	bp_print(GetCVar("realmName"));
 	
